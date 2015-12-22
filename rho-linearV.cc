@@ -25,10 +25,10 @@ int main (int argc, const char * argv[])
     const double Pi = math::pi();
     double kky=0, kkx=0;
     double rrx=1, rry=1 ;
-    const double delta = 0.1 , t=1, V=0.01, mu=0 ;
+    const double delta = 0.1 , t=1, V=0.01, mu=0, spacing=1 ;
 
 
-    double N  = 20;//lattice size 
+    double N  = 31;//lattice size 
 
     for ( double rx = rrx; rx < N+ THRES; rx += 1)
     {
@@ -40,22 +40,20 @@ int main (int argc, const char * argv[])
         ryvec.push_back( double(ry) );
     }
 
-    for ( double rrx : rxvec)
+    for ( double rx = rrx; rx < N+ THRES; rx += 1)
     {
-        for ( double rry : ryvec)
+        for ( double ry = rry; ry < N+THRES; ry += 1)
         {   cx_double rhosum(0);
-            for (double k1y = kky; k1y <2*Pi+THRES; k1y += 2*Pi/N)
-             {  for (double k1x = kkx; k1x <=2*Pi; k1x += 2*Pi/N)
+            for (double k1y = kky; k1y <2*Pi+THRES; k1y += 2*Pi/(N*spacing))
+             {  for (double k1x = kkx; k1x <=2*Pi; k1x += 2*Pi/(N*spacing))
 		 { double e1(0);
 		   e1 = -2*t* ( cos(k1x)+ cos(k1y) ) -mu;
 		 
-		   { for(double k2y = kky; k2y <=2*Pi+THRES; k2y += 2*Pi/N)
-                     { for(double k2x = kkx; k2x <=2*Pi+THRES ; k2x += 2*Pi/N)
+		   { for(double k2y = kky; k2y <=2*Pi+THRES; k2y += 2*Pi/(N*spacing))
+                     { for(double k2x = kkx; k2x <=2*Pi+THRES ; k2x += 2*Pi/(N*spacing))
                          { double e2(0);
-		           e2 = -2*t* ( cos(k2y)+ cos(k2x) ) -mu;
-		           rhosum += 2*Pi*V*(-1+ e1*e2/sqrt((e1*e1+delta*delta)*(e2*e2    +delta*delta)))
-                                     *exp(1.0*(k2x - k1x)*rrx*ii)*exp(1.0*(k2y - 
-                                                                         k1y)*rry*ii)
+		           e2 = -2*t* ( cos(k2x)+ cos(k2y) ) -mu;
+		           rhosum += 2*Pi*V*(-1+ e1*e2/sqrt((e1*e1+delta*delta)*(e2*e2    +delta*delta)))*exp(1.0*(k2x - k1x)*rx*ii*spacing)*exp(1.0*(k2y - k1y)*ry*ii*spacing)
                                      / ( sqrt(e1*e1+delta*delta) + sqrt(e2*e2+delta*delta) );
             
                           }
