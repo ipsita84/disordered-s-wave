@@ -1,16 +1,12 @@
 #include <iostream>
 #include <fstream>
-#include <armadillo>
-#include "gcd.h"
-#include "io.h"
-#include "hamil.h"
 
-const double r = 50.0;
-const unsigned int q_max = 11;
+
+
 const double THRES = 1.0E-10;
 
 using namespace std;
-using namespace arma;
+
 
 int main (int argc, const char * argv[])
 {
