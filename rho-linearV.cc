@@ -46,12 +46,11 @@ int main (int argc, const char * argv[])
                                                                          k1y)*rry*ii)
                                      / ( sqrt(e1^2+delta^2) + sqrt(e2^2+delta^2) );
             
-                          rho.push_back( double(rhosum) );
                           }
                       }
 		   }
 	      }
-            
+        rho.push_back( double(rhosum) );    
         }
     }
     
