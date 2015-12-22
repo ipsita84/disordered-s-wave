@@ -23,11 +23,12 @@ int main (int argc, const char * argv[])
     vector <double> rxvec, ryvec ;
     const cx_double ii(0,1);
     const double Pi = math::pi();
-    double rrx=0, rry=0, kky=0, kkx=0;
+    double kky=0, kkx=0;
+    double rrx=1, rry=1 ;
     const double delta = 0.1 , t=1, V=0.01, mu=0 ;
 
 
-    unsigned int N  = 60;//lattice size 
+    double N  = 10;//lattice size 
 
     for ( double rx = rrx; rx <= N; rx += 1)
     {
@@ -67,7 +68,7 @@ int main (int argc, const char * argv[])
         }
     }
 
-    if( write_to_file("Results/result-rx-ry-rho.dat", rxvec, ryvec, rho ) )
+    if( write_to_file_slvecs("Results/result-rx-ry-rho.dat", rxvec, ryvec, rho ) )
     {
         cout << "Error in opening file to write, quitting..." << endl;
         return 1;
