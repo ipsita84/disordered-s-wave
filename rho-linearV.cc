@@ -1,11 +1,13 @@
 #include <iostream>
 #include <fstream>
+#include <armadillo>
 
 
 
 const double THRES = 1.0E-10;
 
 using namespace std;
+using namespace arma;
 
 
 int main (int argc, const char * argv[])
