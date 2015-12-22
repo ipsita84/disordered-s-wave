@@ -26,9 +26,9 @@ int main (int argc, const char * argv[])
     double kky=0, kkx=0;
     double rrx=1, rry=1 ;
     const double delta = 0.1 , t=1, V=0.01, mu=0, spacing=1 ;
+    double N  = 20;//lattice size 
 
-
-    double N  = 31;//lattice size 
+    ofstream fout(string("result.dat").c_str());// Opens a file for output
 
     for ( double rx = rrx; rx < N+ THRES; rx += 1)
     {
@@ -62,6 +62,7 @@ int main (int argc, const char * argv[])
                   }
 	      }
         rho.push_back( double(rhosum.real()) );
+        fout << rx << '\t' << ry << '\t' << rhosum.real() << endl;
         //if (!rho.imag()) { rho has imaginary part ! };    
         }
     }
@@ -71,6 +72,7 @@ int main (int argc, const char * argv[])
         cout << "Error in opening file to write, quitting..." << endl;
         return 1;
     }
+    fout.close();
 
     return 0;
 }
