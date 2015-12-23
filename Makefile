@@ -1,7 +1,7 @@
 CXXFLAGS   += -Wall -std=c++11
 LDFLAGS     = -larmadillo -L/usr/lib64/atlas -lsatlas -O3
 BIN         = out
-SOURCES     = rho-linearV.cc io.cc
+SOURCES     = rho-linearV.cc
 OBJ         = ${SOURCES:%.cc=%.o}
 
 all: ${BIN}
@@ -11,7 +11,6 @@ ${BIN}: ${OBJ}
 
 main.o: plot.h hamil.h io.h
 
-rho-linearV.o: io.h
 
 gcd.o: gcd.h
 
